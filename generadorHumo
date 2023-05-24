@@ -1,0 +1,139 @@
+#include <xc.h>
+#include <stdint.h>
+
+#define _XTAL_FREQ 4000000  // Frecuencia de oscilación del microcontrolador (4 MHz)
+
+// Definiciones de pines
+#define BTN_PIN       PORTAbits.RA0
+#define LED_PIN       PORTAbits.RA1
+#define MOTOR_PIN     PORTAbits.RA2
+#define FAN_PIN       PORTAbits.RA3
+#define NICRON_PIN    PORTAbits.RA4
+#define BATTERY_PIN   PORTBbits.RB0
+
+// Variables globales
+uint8_t pulsaciones = 0;
+uint8_t battery_low = 0;
+
+// Función de retardo
+void delay_ms(uint16_t milliseconds) {
+    for (uint16_t i = 0; i < milliseconds; i++) {
+        __delay_ms(1);
+    }
+}
+
+// Rutina de interrupción para el botón
+void __interrupt() isr(void) {
+    if (T0IF && TMR0IE) {  // Interrupción del temporizador 0 (TMR0)
+        pulsaciones = 0;  // Reiniciar el contador de pulsaciones
+        TMR0IF = 0;       // Limpiar la bandera de interrupción
+    }
+}
+
+// Función para iniciar el temporizador 0 (TMR0)
+void iniciar_temporizador() {
+    // Configurar el temporizador 0 (TMR0)
+    TMR0CS = 0;    // Fuente de reloj: Fosc/4
+    PSA = 0;       // Asignar el preescalador al temporizador 0
+    PS2 = 1; PS1 = 1; PS0 = 1;  // Preescalador 1:256
+    T0IF = 0;      // Limpiar la bandera de interrupción
+    T0IE = 1;      // Habilitar la interrupción del temporizador 0 (TMR0)
+    GIE = 1;       // Habilitar las interrupciones globales
+}
+
+// Función para leer el estado del botón
+uint8_t leer_boton() {
+    if (!BTN_PIN) {
+        delay_ms(2000);  // Esperar 2 segundos para evitar rebotes
+        if (!BTN_PIN) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// Función para contar y guardar las pulsaciones en la EEPROM
+void contar_pulsaciones() {
+    pulsaciones++;
+}
+
+// Función para grabar en la EEPROM y confirmar con el motor
+void grabar_en_eeprom() {
+    // Grabar pulsaciones en la EEPROM
+    EEPROM_WRITE(0x00, pulsaciones);
+
+    // Confirmar con el motor
+    MOTOR_PIN = 1;
+    delay_ms(500);
+    MOTOR_PIN = 0;
+
+    // Esperar nuevamente la confirmación del botón
+    while (!BTN_PIN) {
+        // Esperar
+    }
+
+    // Reiniciar el contador de pulsaciones
+    pulsaciones = 0;
+}
+
+// Función para contar en forma decreciente lo almacenado en la EEPROM
+void contar_decreciente() {
+    uint8_t contador = EEPROM_READ(0x00);
+    for (; contador > 0; contador--) {
+        LED_PIN = 1;
+        delay_ms(1000);
+        LED_PIN = 0;
+        delay_ms(1000);
+    }
+}
+
+// Función para activar el NICRON durante 3 segundos
+void activar_nicron() {
+    NICRON_PIN = 1;
+    delay_ms(3000);
+    NICRON_PIN = 0;
+}
+
+// Función para medir el nivel de la batería
+void medir_nivel_bateria() {
+    if (BATTERY_PIN == 0) {
+        battery_low = 1;  // Batería baja
+    } else {
+        battery_low = 0;  // Batería normal
+    }
+}
+
+// Función principal
+void main(void) {
+    // Configurar puertos como entradas o salidas
+    TRISA = 0b00000001;  // RA0 como entrada, el resto como salidas
+    TRISB = 0b00000001;  // RB0 como entrada
+
+    PORTA = 0;           // Limpiar el puerto A
+    PORTB = 0;           // Limpiar el puerto B
+
+    // Configurar temporizador 0 (TMR0)
+    iniciar_temporizador();
+
+    while (1) {
+        if (leer_boton()) {  // Si se presiona el botón
+            delay_ms(2000);  // Esperar 2 segundos para evitar rebotes
+            if (leer_boton()) {
+                if (battery_low) {
+                    LED_PIN = 1;  // Indicar batería baja con el LED
+                } else {
+                    contar_pulsaciones();
+                    if (pulsaciones > 0) {
+                        grabar_en_eeprom();
+                    } else {
+                        contar_decreciente();
+                        activar_nicron();
+                    }
+                }
+            }
+        }
+
+        // Medir nivel de la batería
+        medir_nivel_bateria();
+    }
+}
