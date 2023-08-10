@@ -1,0 +1,32 @@
+instalaciones para inferencia en RPI 3 y zero
+
+install pip              sudo apt-get install pip 
+install opencv           sudo apt-get install python3-opencv
+install cmake            sudo apt-get install cmake
+install git              sudo apt-get install git
+install pyyaml           pip install pyyaml==5.4.1
+install libthreadpool    sudo apt-get install libthreadpool
+
+usar python3 para ./configure.py
+
+
+en pi zero     ELSEIF(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "^(i686|x86_64|armv5te|armv7-a|armv7l|aarch64|armv6l)$")   reemplazar por la que hay en CMakelists.txt para que pase el error del micro
+
+instalar winscp para enviar archivos por ssh
+
+grabar la imagen con rasperry software , antes configurar con el engranaje abajo en la imagen , ssh wifi y passw para ingresar
+
+
+
+referencias
+
+
+https://github.com/DT42/darknet-nnpack
+https://forum.opencv.org/t/installing-opencv-on-raspberry-pi-zero-1-3-w-with-python-picamera/3999
+https://github.com/digitalbrain79/darknet-nnpack/issues/53
+https://egemenertugrul.github.io/blog/Darknet-NNPACK-on-Raspberry-Pi/
+https://www.aprendemachinelearning.com/modelos-de-deteccion-de-objetos/
+https://github.com/egemenertugrul/NNPACK/blob/c9efb594fc1efe58e98c0451f29e78ccc67c26c5/CMakeLists.txt#L54
+https://egemenertugrul.github.io/blog/Darknet-NNPACK-on-Raspberry-Pi/
+https://noviello.it/es/como-instalar-opencv-en-raspberry-pi-3/?expand_article=1
+https://www.youtube.com/watch?v=jYtc5XTYLP0
