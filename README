@@ -1,6 +1,6 @@
 instalaciones para inferencia en RPI 3 y zero
 
-install pip              sudo apt-get install pip 
+install pip              sudo apt-get install python3-pip
 install opencv           sudo apt-get install python3-opencv
 install cmake            sudo apt-get install cmake
 install git              sudo apt-get install git
@@ -20,7 +20,7 @@ grabar la imagen con rasperry software , antes configurar con el engranaje abajo
 
 referencias
 
-
+https://raspap.com/  access point
 https://github.com/DT42/darknet-nnpack
 https://forum.opencv.org/t/installing-opencv-on-raspberry-pi-zero-1-3-w-with-python-picamera/3999
 https://github.com/digitalbrain79/darknet-nnpack/issues/53
