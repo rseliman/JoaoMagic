@@ -5,7 +5,14 @@ install opencv           sudo apt-get install python3-opencv
 install cmake            sudo apt-get install cmake
 install git              sudo apt-get install git
 install pyyaml           pip install pyyaml==5.4.1
-install libthreadpool    sudo apt-get install libthreadpool
+
+git clone https://github.com/Maratyszcza/pthreadpool.git
+cd pthreadpool
+
+mkdir build  # Crea un directorio para la construcción
+cd build     # Cambia al directorio de construcción
+cmake ..     # Configura el proyecto usando CMake
+make
 
 usar python3 para ./configure.py
 
