@@ -18,6 +18,10 @@ make
 
 usar python3 para ./configure.py
 
+instalar hotspot 
+
+https://github.com/rudiratlos/hotspot
+
 
 en pi zero     ELSEIF(NOT CMAKE_SYSTEM_PROCESSOR MATCHES "^(i686|x86_64|armv5te|armv7-a|armv7l|aarch64|armv6l)$")   reemplazar por la que hay en CMakelists.txt para que pase el error del micro
 
