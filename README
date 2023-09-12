@@ -2,6 +2,10 @@ instalar en rpi3 bulseyese lite 64 bytes
 
 instalacion display 1,47 inch     https://www.spotpear.com/index.php/index/study/detail/id/721.html
 
+instalar opencv 
+https://programarfacil.com/blog/vision-artificial/opencv-raspberry-pi/
+
+
 
 instalaciones para inferencia en RPI 3 y zero
 
@@ -35,6 +39,8 @@ grabar la imagen con rasperry software , antes configurar con el engranaje abajo
 
 
 referencias
+
+https://programarfacil.com/blog/vision-artificial/deteccion-de-movimiento-con-opencv-python/
 
 https://raspap.com/  access point
 https://github.com/DT42/darknet-nnpack
