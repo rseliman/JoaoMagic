@@ -14,7 +14,7 @@ https://programarfacil.com/blog/vision-artificial/opencv-raspberry-pi/
 
 
 instalaciones para inferencia en RPI 3 y zero
-
+install re2c              sudo apt-get install re2c
 install pip              sudo apt-get install python3-pip
 install opencv           sudo apt-get install python3-opencv
 install cmake            sudo apt-get install cmake
