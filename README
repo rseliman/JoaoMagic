@@ -2,6 +2,7 @@ este tutorial parece funcionar
 
 https://github.com/HaroldSP/Harold/wiki/4.-Installing-darknet-nnpack-to-run-YOLOv3-on-Raspberry-pi-4
 
+~/NNPACK/build $ sudo env "PATH=$PATH" /home/rseliman/ninja/ninja install     -----esto es para sudo ninja install que no funciona , hay que ejecutarlo desde NNPACK/BUILD
 
 
 instalar en rpi3 bulseyese lite 64 bytes
