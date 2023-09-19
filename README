@@ -12,6 +12,8 @@ instalacion display 1,47 inch     https://www.spotpear.com/index.php/index/study
 instalar opencv 
 https://programarfacil.com/blog/vision-artificial/opencv-raspberry-pi/
 
+MUY IMPORTANTE QUE EL PATH DE NINJA ESTE EN SU LUGAR nano ~/.bashrc   Y   export PATH=$PATH:/home/rseliman/ninja       EL CAMINO DEBERA SER DONDE SE INSTALO NINJA 
+
 
 
 instalaciones para inferencia en RPI 3 y zero
