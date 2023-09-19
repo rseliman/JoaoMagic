@@ -15,7 +15,22 @@ instalar opencv
 https://programarfacil.com/blog/vision-artificial/opencv-raspberry-pi/
 
 MUY IMPORTANTE QUE EL PATH DE NINJA ESTE EN SU LUGAR nano ~/.bashrc   Y   export PATH=$PATH:/home/rseliman/ninja       EL CAMINO DEBERA SER DONDE SE INSTALO NINJA 
+###########################################################################################
+angmorpri commented on May 13, 2020
+I also faced that error on my Raspberry Pi 3. It seems that it has to do with the last update of Maratyszcza/pthreadpool repo, which is downloaded sometime during the NNPACK build.
 
+I solved it just by changing the commit of the pthreadpool repo that is cloned; but I have to say that I do not use the confu method to build NNPACK. 
+Instead -as recommended in Maratyszcza/NNPACK-, I use the cmake rules. In this case, 
+I just had to go to NNPACK/cmake/DownloadPThreadPool.cmake and change the line GIT_TAG master to GIT_TAG 5690b5ceada160444a916d31ef72e381f5e52d67, being the new tag the last commit I was able to get working.
+
+The rules I follow for building NNPACK are:
+
+cd NNPACK
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+sudo ninja install
+#################################################################################################
 
 
 instalaciones para inferencia en RPI 3 y zero
