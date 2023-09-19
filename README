@@ -4,6 +4,8 @@ https://github.com/HaroldSP/Harold/wiki/4.-Installing-darknet-nnpack-to-run-YOLO
 
 ~/NNPACK/build $ sudo env "PATH=$PATH" /home/rseliman/ninja/ninja install     -----esto es para sudo ninja install que no funciona , hay que ejecutarlo desde NNPACK/BUILD
 
+PARA EL SUDO NINJA INSTALL HACER LO SIGUIENTE ANTES DE EJECUTARLO ......    sudo visudo Y AL FINAL DEL ARCHIVO AGREGAR --->>                  Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/rseliman/ninja"
+
 
 instalar en rpi3 bulseyese lite 64 bytes
 
