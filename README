@@ -4,6 +4,35 @@ este tutorial parece funcionar
 IMPORTANTE ....EL ERROR DE SEGMENTATION FAULT ES MALA COMPILACION DE NNPACK O NNPACK-darnet
 
 
+Install qmkl
+
+sudo apt-get install cmake
+git clone https://github.com/Idein/qmkl.git
+cd qmkl
+cmake .
+make
+sudo make install
+Install qasm2
+
+sudo apt-get install flex
+git clone https://github.com/Terminus-IMRC/qpu-assembler2
+cd qpu-assembler2
+make
+sudo make install
+Install qbin2hex
+
+git clone https://github.com/Terminus-IMRC/qpu-bin-to-hex
+cd qpu-bin-to-hex
+make
+sudo make install
+At this point, you can build darknet-nnpack using make. Be sure to edit the Makefile before compiling.
+
+
+
+
+
+
+
 
 https://github.com/HaroldSP/Harold/wiki/4.-Installing-darknet-nnpack-to-run-YOLOv3-on-Raspberry-pi-4
 
