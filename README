@@ -1,5 +1,10 @@
 este tutorial parece funcionar 
 
+
+IMPORTANTE ....EL ERROR DE SEGMENTATION FAULT ES MALA COMPILACION DE NNPACK O NNPACK-darnet
+
+
+
 https://github.com/HaroldSP/Harold/wiki/4.-Installing-darknet-nnpack-to-run-YOLOv3-on-Raspberry-pi-4
 
 ~/NNPACK/build $ sudo env "PATH=$PATH" /home/rseliman/ninja/ninja install     -----esto es para sudo ninja install que no funciona , hay que ejecutarlo desde NNPACK/BUILD
